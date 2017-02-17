@@ -1,0 +1,15 @@
+steps:
+  - name: ':hammer: Build'
+    command: '/.buildkite/build.sh'
+    agents:
+      node: 'true'
+      backend: 'true'
+
+  - wait
+
+  - name: ':rocket: Deploy'
+    command: '/.buildkite/deploy.sh'
+    branches: 'develop staging master'
+    agents:
+      node: 'true'
+      backend: 'true'
