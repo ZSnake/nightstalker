@@ -7,9 +7,6 @@ const environment = process.env.ENVIRONMENT || 'dev';
 
 const appName = 'compass-backend';
 
-
-
-
 gulp.doneCallback = function (err) {
   process.exit(err ? 1 : 0);
 };
