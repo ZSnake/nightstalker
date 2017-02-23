@@ -25,7 +25,7 @@ gulp.task("build-src", function () {
     .pipe(babel())
     .pipe(gulp.dest("dist/app"));
 });
- 
+
 gulp.task("build-tests", function () {
   return gulp.src("tests/**/*.js")
     .pipe(babel())
