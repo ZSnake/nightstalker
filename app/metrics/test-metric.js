@@ -1,7 +1,7 @@
 //@flow
 'use strict';
 
-export const TestMetric = (evalCriteria : boolean) => {
+export const testMetric = (evalCriteria : boolean) => {
     if(evalCriteria)
         return -10;
     return 0

@@ -1,11 +1,15 @@
 //@flow
 'use strict';
+import { createContainer, asClass, asFunction } from 'awilix'
+import { testMetric } from '../metrics/test-metric';
+import helloHandler from '../handlers/hello/hello-handler'
 
-import { createContainer } from 'awilix'; 
-import {TestMetric} from '../metrics/test-metric';
-
-export const configureContainer = function(): any
+export default () => 
 {
-    const container = createContainer();
-    container.registerClass(TestMetric);
+    const container: any = createContainer();
+    container.register({
+        TestMetric: asFunction(testMetric),
+        HelloHandler: asClass(helloHandler),
+    });
+    return container;
 }

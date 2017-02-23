@@ -2,12 +2,13 @@
 
 import Hapi from 'hapi'
 import "babel-polyfill";
-import  hapiAsyncHandler from 'hapi-async-handler';
-import  vision from 'vision';
-import  inert from 'inert';
-import  hapiSwagger from 'hapi-swagger';
-import  routes from './app/routes/routes';
-import  mongoService from './app/database/connect-mongo';
+import hapiAsyncHandler from 'hapi-async-handler';
+import vision from 'vision';
+import inert from 'inert';
+import hapiSwagger from 'hapi-swagger';
+import getRoutes from './app/routes/routes';
+import mongoService from './app/database/connect-mongo';
+import configureContainer from './app/config/configureContainer';
 
 const server = new Hapi.Server();
 
@@ -44,6 +45,8 @@ const validate = (decoded, request, callback) => {
 	mongoService.connectMongoDb();
 };
 
+const container = configureContainer();
+const routes = getRoutes(container)
 server.register(plugins, (err) => {
 	if (err) {
 		throw err;

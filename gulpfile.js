@@ -33,9 +33,9 @@ gulp.task("build-tests", function () {
 });
 
 gulp.task('test', () =>{
-    return gulp.src('dist/tests/metrics/test-metric.test.js', {read: false})
+    return gulp.src('dist/tests/**/*.js', {read: false})
         .pipe(mocha({reporter: 'nyan'}))
       }
 );
 
-gulp.task("build", ["build-server", "build-src", "build-tests"])
+gulp.task("build", ["build-server", "build-src", "build-tests"]);

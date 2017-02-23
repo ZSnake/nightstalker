@@ -8,7 +8,7 @@ const expect = chai.expect;
 chai.use(chaiAsPromised);
 chai.use(sinonChai);
 
-import {testMetric} from '../../app/metrics/test-metric';
+import HelloHandler from '../../app/handlers/hello/hello-handler';
 
 describe('Test Metric', () => {
     describe('Run metric with no substraction', () => {
@@ -20,14 +20,13 @@ describe('Test Metric', () => {
         afterEach(() => {
             sandbox.restore();
         });
-        it('should subtract 10 to the overall grade', () => {
-            const result = testMetric(true);
-            expect(result).to.equal(-10);
-        });
-        
-        it('should not affect the overall grade', () => {
-            const result = testMetric(false);
-            expect(result).to.equal(0);
+        console.log('alskdfmalksdfm')
+        it('should return hello world', () => {
+            const response = 'Hello, World!';
+            const replySpy = sinon.spy();
+            const handler = new HelloHandler() ;
+            const result = handler.getHello({}, replySpy);
+            expect(replySpy).to.have.been.calledWith(response);
         });
     })
 });
