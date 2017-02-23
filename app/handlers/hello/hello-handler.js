@@ -1,12 +1,10 @@
+//@flow
 'use strict';
 
-const getHello = function* getHello(req, reply) {
-	const response = 'Hello, World!';
-	reply(response);
+export default class HelloHandler {
+	 getHello(req: any, reply: any) {
+		const response = 'Hello, World!';
+		reply(response);
+	};
+}
 
-};
-
-
-module.exports = {
-	getHello,
-};

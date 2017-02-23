@@ -1,11 +1,9 @@
 'use strict';
-const fs = require('fs');
+import helloRoutes from './hello-routes';
 
-const files = fs.readdirSync(__dirname);
-const requires = files
-	.filter((file) => file.endsWith('-routes.js'))
-	.map((file) => require(`./${file}`));
-
-const routes = [].concat.apply([], requires);
-
-module.exports = routes;
+export default (container) => {
+	const routes = [].concat.apply(
+		helloRoutes(container.resolve('HelloHandler')
+	));
+	return routes;
+}

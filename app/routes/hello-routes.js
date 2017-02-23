@@ -1,28 +1,29 @@
-const co = require('co');
-const Joi = require('joi');
-const helloHandler = require('../handlers/hello/hello-handler')
+import co from 'co';
+import Joi from 'joi'
 
-module.exports = [
-    {
-        method: 'GET',
-        path: '/',
-        config: {
-            handler: {
-                async: co.wrap(helloHandler.getHello),
-            },
-            description: 'Test page',
-            notes: 'Test',
-            tags: ['api'],
-            plugins: {
-                'hapi-swagger': {
-                    responses: {
-                        200: {
-                            description: 'Success',
-                            schema: Joi.string('Hello, World!'),
+export default (helloHandler) => {
+    return [
+        {
+            method: 'GET',
+            path: '/',
+            config: {
+                handler: {
+                    async: co.wrap(helloHandler.getHello),
+                },
+                description: 'Test page',
+                notes: 'Test',
+                tags: ['api'],
+                plugins: {
+                    'hapi-swagger': {
+                        responses: {
+                            200: {
+                                description: 'Success',
+                                schema: Joi.string('Hello, World!'),
+                            },
                         },
                     },
                 },
             },
-        },
-    }
-]
+        }
+    ]
+} 

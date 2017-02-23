@@ -1,13 +1,16 @@
 'use strict';
 
-const Hapi = require('hapi');
+import Hapi from 'hapi'
+import "babel-polyfill";
+import hapiAsyncHandler from 'hapi-async-handler';
+import vision from 'vision';
+import inert from 'inert';
+import hapiSwagger from 'hapi-swagger';
+import getRoutes from './app/routes/routes';
+import mongoService from './app/database/connect-mongo';
+import configureContainer from './app/config/configureContainer';
+
 const server = new Hapi.Server();
-const hapiAsyncHandler = require('hapi-async-handler');
-const vision = require('vision');
-const inert = require('inert');
-const hapiSwagger = require('hapi-swagger');
-const routes = require('./app/routes/routes');
-const mongoService = require('./app/database/connect-mongo');
 
 const hapiSwaggerOptions = {
 	info: {
@@ -42,6 +45,8 @@ const validate = (decoded, request, callback) => {
 	mongoService.connectMongoDb();
 };
 
+const container = configureContainer();
+const routes = getRoutes(container)
 server.register(plugins, (err) => {
 	if (err) {
 		throw err;
