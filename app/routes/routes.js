@@ -6,8 +6,6 @@ const requires = files
 	.filter((file) => file.endsWith('-routes.js'))
 	.map((file) => require(`./${file}`));
 
-	console.log(requires)
-
 const routes = [].concat.apply([], requires);
 
 module.exports = routes;

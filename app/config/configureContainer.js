@@ -1,9 +1,8 @@
 //@flow
 'use strict';
 
-import { createContainer } from 'awilix';
-import Metric from '../metrics/metric';
-import TestMetric from '../metrics/test-metric';
+import { createContainer } from 'awilix'; 
+import {TestMetric} from '../metrics/test-metric';
 
 export const configureContainer = function(): any
 {

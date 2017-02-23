@@ -8,21 +8,27 @@ const expect = chai.expect;
 chai.use(chaiAsPromised);
 chai.use(sinonChai);
 
-import TestMetric from '../../app/metrics/test-metric';
+import {TestMetric} from '../../app/metrics/test-metric';
 
 describe('Test Metric', () => {
     describe('Run metric with no substraction', () => {
         let sandbox;
-
-		beforeEach(() => {
-			sandbox = sinon.sandbox.create();
-		});
-		afterEach(() => {
-			sandbox.restore();
-		});
-
-        const testMetric = new TestMetric() ;
-        const result = testMetric.run(false);
-        expect(result).to.equal(0);
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+        });
+        
+        afterEach(() => {
+            sandbox.restore();
+        });
+        it('should subtract 10 to the overall grade', () => {
+            const testMetric = new TestMetric() ;
+            const result = TestMetric(true);
+            expect(result).to.equal(-10);
+        });
+        it('should not affect the overall grade', () => {
+            const testMetric = new TestMetric() ;
+            const result = TestMetric(false);
+            expect(result).to.equal(0);
+        });
     })
-})
+});

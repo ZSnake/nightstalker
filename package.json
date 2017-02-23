@@ -7,8 +7,9 @@
     "serve": "npm run flow && npm run build && npm run test && npm run start",
     "build": "gulp build",
     "start": "node dist/server.js",
-    "test": "mocha dist/tests/**/*.js --reporter spec",
-    "flow": "flow check"
+    "test": "gulp test",
+    "flow": "flow check",
+    "manual": "mocha dist/tests/metrics/test-metric.test.js"
   },
   "repository": {
     "type": "git",

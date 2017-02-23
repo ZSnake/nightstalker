@@ -6,6 +6,7 @@ const tasks = requireDir('./tasks');
 const babel = require("gulp-babel");
 const environment = process.env.ENVIRONMENT || 'dev';
 const flow = require('gulp-flowtype');
+const mocha = require('gulp-mocha');
 
 const appName = 'compass-backend';
 
@@ -30,5 +31,11 @@ gulp.task("build-tests", function () {
     .pipe(babel())
     .pipe(gulp.dest("dist/tests"));
 });
+
+gulp.task('test', () =>{
+    return gulp.src('dist/tests/metrics/test-metric.test.js', {read: false})
+        .pipe(mocha({reporter: 'nyan'}))
+      }
+);
 
 gulp.task("build", ["build-server", "build-src", "build-tests"])
